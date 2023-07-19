@@ -1,15 +1,13 @@
-# go-useragent-sanitizer
+package main
 
-Sanitize user agent strings, basded on current examples from [Mozilla](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent).  Current in-use regex is: `"[A-Z]|[a-z]|[0-9]|/|\\.| |;|:|\\+|\\(|\\)|;|_|,"`.
+import (
+	"fmt"
 
+	sanitizer "github.com/NodyHub/go-useragent-sanitizer"
+)
 
-## Example usage
-
-Example code:
-
-```golang
 func main() {
-    // Test data
+	// Test data
 	malformedUserAgent := "Mozilla/5.0 (platform; <h1>'\"%0D%0A"
 	// Before
 	fmt.Printf("Malformed UserAgent: %v\n", malformedUserAgent)
@@ -22,6 +20,3 @@ func main() {
 		fmt.Printf("Sanitized with replace: %v\n", sanitized)
 	}
 }
-```
-
-Full example can be found in the [example](example/) sub-dir.
