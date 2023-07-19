@@ -8,6 +8,8 @@ const (
 	validCharacters = "[A-Z]|[a-z]|[0-9]|/|\\.| |;|:|\\+|\\(|\\)|;|_|,"
 )
 
+// Replace replaces all non-valid character from the provided userAgent with replaceWith and returns the the updates
+// userAgent and if any changes have been done.
 func Replace(userAgent string, replaceWith byte) (string, bool) {
 	var changed bool
 	work := []byte(userAgent)
@@ -26,6 +28,8 @@ func Replace(userAgent string, replaceWith byte) (string, bool) {
 	return userAgent, changed
 }
 
+// Remove removes all non-valid character from the provided userAgent and returns the the updates
+// userAgent and if any changes have been done.
 func Remove(userAgent string) (string, bool) {
 	var changed bool
 	work := []byte(userAgent)
