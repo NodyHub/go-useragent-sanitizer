@@ -1,5 +1,7 @@
 # go-useragent-sanitizer
 
+[![Go](https://github.com/NodyHub/go-useragent-sanitizer/actions/workflows/test.yaml/badge.svg)](https://github.com/NodyHub/go-useragent-sanitizer/actions/workflows/test.yaml)
+
 Sanitize user agent strings, basded on current examples from [Mozilla](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent).  Current in-use regex is: `"[A-Z]|[a-z]|[0-9]|/|\\.| |;|:|\\+|\\(|\\)|;|_|,"`.
 
 
