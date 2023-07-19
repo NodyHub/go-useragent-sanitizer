@@ -24,4 +24,4 @@ func main() {
 }
 ```
 
-Full example can be found in the [example](example/) sub-dir.
+Full example can be found [here](example/main.go).
