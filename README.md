@@ -24,4 +24,13 @@ func main() {
 }
 ```
 
+Output:
+
+```shell
+$ go run ./main.go
+Malformed UserAgent: Mozilla/5.0 (platform; <h1>'"%0D%0A
+Sanitized with remove: Mozilla/5.0 (platform; h10D0A
+Sanitized with replace: Mozilla/5.0 (platform; _h1____0D_0A
+```
+
 Full example can be found [here](example/main.go).
