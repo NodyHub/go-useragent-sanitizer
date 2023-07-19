@@ -8,7 +8,7 @@ const (
 	validCharacters = "[A-Z]|[a-z]|[0-9]|/|\\.| |;|:|\\+|\\(|\\)|;|_|,"
 )
 
-func Sanitize(userAgent string, replaceWith byte) string {
+func Replace(userAgent string, replaceWith byte) (string, bool) {
 	var changed bool
 	work := []byte(userAgent)
 	allowList := regexp.MustCompile(validCharacters)
@@ -23,5 +23,23 @@ func Sanitize(userAgent string, replaceWith byte) string {
 		userAgent = string(work)
 	}
 
-	return userAgent
+	return userAgent, changed
+}
+
+func Remove(userAgent string) (string, bool) {
+	var changed bool
+	work := []byte(userAgent)
+	allowList := regexp.MustCompile(validCharacters)
+	for idx := len(work) - 1; idx >= 0; idx -= 1 {
+		val := string(work[idx])
+		if !allowList.MatchString(val) {
+			work = append(work[:idx], work[idx+1:]...)
+			changed = true
+		}
+	}
+	if changed {
+		userAgent = string(work)
+	}
+
+	return userAgent, changed
 }
