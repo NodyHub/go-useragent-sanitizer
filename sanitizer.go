@@ -2,48 +2,35 @@ package sanitizer
 
 import (
 	"regexp"
+	"strings"
 )
 
 const (
 	validCharacters = "[A-Z]|[a-z]|[0-9]|/|\\.| |;|:|\\+|\\(|\\)|;|_|,"
 )
 
-// Replace replaces all non-valid character from the provided userAgent with replaceWith and returns the the updates
-// userAgent and if any changes have been done.
-func Replace(userAgent string, replaceWith byte) (string, bool) {
-	var changed bool
-	work := []byte(userAgent)
+// Replace returns a copy of userAgent, all non-valid runes are replaced
+// by replaceWith.
+func Replace(userAgent, replaceWith string) string {
+	// prepare regex
 	allowList := regexp.MustCompile(validCharacters)
-	for idx := range work {
-		val := string(work[idx])
-		if !allowList.MatchString(val) {
-			work[idx] = byte(replaceWith)
-			changed = true
+
+	// prepare result string
+	var sb strings.Builder
+
+	// iterate over input
+	for _, srcrune := range userAgent {
+		if !allowList.MatchString(string(srcrune)) {
+			sb.WriteString(replaceWith)
+		} else {
+			sb.WriteString(string(srcrune))
 		}
 	}
-	if changed {
-		userAgent = string(work)
-	}
 
-	return userAgent, changed
+	return sb.String()
 }
 
-// Remove removes all non-valid character from the provided userAgent and returns the the updates
-// userAgent and if any changes have been done.
-func Remove(userAgent string) (string, bool) {
-	var changed bool
-	work := []byte(userAgent)
-	allowList := regexp.MustCompile(validCharacters)
-	for idx := len(work) - 1; idx >= 0; idx -= 1 {
-		val := string(work[idx])
-		if !allowList.MatchString(val) {
-			work = append(work[:idx], work[idx+1:]...)
-			changed = true
-		}
-	}
-	if changed {
-		userAgent = string(work)
-	}
-
-	return userAgent, changed
+// Returns a copy of userAgent, without all non-valid user agent runes.
+func Remove(userAgent string) string {
+	return Replace(userAgent, "")
 }
