@@ -16,8 +16,7 @@ $ go get github.com/NodyHub/go-useragent-sanitizer
 Example code:
 
 ```golang
-func main() {
-    // Test data
+	// Test data
 	malformedUserAgent := "Mozilla/5.0 (platform; <h1>'\"%0D%0A"
 	// Before
 	fmt.Printf("Malformed UserAgent: %v\n", malformedUserAgent)
@@ -25,13 +24,11 @@ func main() {
 	fmt.Printf("Sanitized with remove: %v\n", sanitizer.Remove(malformedUserAgent))
 	// Replace
 	fmt.Printf("Sanitized with replace: %v\n", sanitizer.Replace(malformedUserAgent, '_'))
-}
 ```
 
 Output:
 
 ```shell
-$ go run ./main.go
 Malformed UserAgent: Mozilla/5.0 (platform; <h1>'"%0D%0A
 Sanitized with remove: Mozilla/5.0 (platform; h10D0A
 Sanitized with replace: Mozilla/5.0 (platform; _h1____0D_0A
