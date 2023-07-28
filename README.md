@@ -22,13 +22,9 @@ func main() {
 	// Before
 	fmt.Printf("Malformed UserAgent: %v\n", malformedUserAgent)
 	// Remove
-	if sanitized, changed := sanitizer.Remove(malformedUserAgent); changed {
-		fmt.Printf("Sanitized with remove: %v\n", sanitized)
-	}
+	fmt.Printf("Sanitized with remove: %v\n", sanitizer.Remove(malformedUserAgent))
 	// Replace
-	if sanitized, changed := sanitizer.Replace(malformedUserAgent, '_'); changed {
-		fmt.Printf("Sanitized with replace: %v\n", sanitized)
-	}
+	fmt.Printf("Sanitized with replace: %v\n", sanitizer.Replace(malformedUserAgent, '_'))
 }
 ```
 
