@@ -4,14 +4,13 @@
 
 Sanitize user agent strings, basded on current examples from [Mozilla](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent).  Current in-use regex is: `[A-Z]|[a-z]|[0-9]|/|\\.| |;|:|\\+|\\(|\\)|;|_|,`.
 
-
 ## Instalation
 
 ```shell
-$ go get github.com/NodyHub/go-useragent-sanitizer
+go get github.com/NodyHub/go-useragent-sanitizer
 ```
 
-## Example 
+## Example
 
 Example code:
 
